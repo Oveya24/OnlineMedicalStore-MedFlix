@@ -19,13 +19,13 @@ import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-k
           <a href='www.google.com' className='me-4 text-reset'>
             <MDBIcon fab icon="google" />
           </a>
-          <a href='https://www.instagram.com/sw__ar__na/?next=%2F' className='me-4 text-reset'>
+          <a href='https://www.instagram.com/roov_007/?igshid=NGVhN2U2NjQ0Yg%3D%3D' className='me-4 text-reset'>
             <MDBIcon fab icon="instagram" />
           </a>
-          <a href='https://www.linkedin.com/in/swarna-lakshmi-n-1a5615258/' className='me-4 text-reset'>
+          <a href='https://www.linkedin.com/authwall?trk=bf&trkInfo=AQERIS2SSyU8cgAAAYwUyaMA3OHfeESJA4siHg4e4Hy88zFyXQD4Yvyfw6131ScMV7oLqqNZQFzQHbnRqSxfp0L6X_r0cVVW7DOTLQyqJbMxtx6aSMhb47QkwFgDT2ygY6rPerw=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Froshni-oveya-p-423538258%3Futm_source%3Dshare%26utm_campaign%3Dshare_via%26utm_content%3Dprofile%26utm_medium%3Dandroid_app' className='me-4 text-reset'>
             <MDBIcon fab icon="linkedin" />
           </a>
-          <a href='https://github.com/nswarnalakshmi' className='me-4 text-reset'>
+          <a href='https://github.com/Oveya24' className='me-4 text-reset'>
             <MDBIcon fab icon="github" />
           </a>
         </div>

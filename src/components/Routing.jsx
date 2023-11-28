@@ -12,6 +12,9 @@ import Homenav from './navbar/navbar'
 import SearchPage from './Searchbar/Searchbar'
 import Marquee from 'react-fast-marquee'
 import hFoot from './Footers/Footers'
+import MyCart from './addtocart/MyCart'
+import AboutUs from './Features/Feat'
+//import PrivateRoute from './PrivateRouting'
 
 
 
@@ -36,32 +39,17 @@ Thank you for choosing Medflix. Here's to a healthier you!
         <Route path='/fem' element={<Card3/>}/>
         <Route path='/fit' element={<Card4/>}/>
         <Route path='/pet' element={<Card5/>}/>
+          <Route path='/cart' element={
+            //<PrivateRoute>
+              <MyCart/>
+            //</PrivateRoute>
+          }/>
+        <Route path='/feat' element={<AboutUs/>}/>
     </Routes> 
     {hFoot()}
+
     </>   
   )
 }
 
 export default Routing
-// App.js
-// import React from 'react';
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-// import Homepage from './Homepage/Homepage';
-// import Loginpage from './Login/Loginpage';
-
-
-// function App() {
-//   return (
-//     <Router>
-//       <Switch>
-//         <Route path="/" exact component={Homepage} />
-//         <Route path="/home" component={Homepage} />
-//         <Route path="/login" component={Loginpage} />
-       
-//       </Switch>
-//     </Router>
-//   );
-// }
-
-// export default App;

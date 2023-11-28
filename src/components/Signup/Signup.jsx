@@ -1,94 +1,90 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  //MDBSelect,
-  MDBRadio
+  MDBContainer
 }
 from 'mdb-react-ui-kit';
-import './Signup.css'
+
+import { useState}from 'react'
+import { Link , useNavigate } from 'react-router-dom';
+import { UserData } from '../../service/UserApi';
 
 function Signup() {
-  const navigate7=useNavigate();
-  const handlesub = ()=>{
-      navigate7('/')
-  }
+  // const navigate7=useNavigate();
+  const [data,setdata]=useState(
+    {
+    name:"",
+    email:"",
+    password:""
+    }
+   )
+   const navigate=useNavigate();
+
+    const handleSubmitChangeSignUp=(event)=>{
+        event.preventDefault(); 
+        UserData(data);   
+        navigate('/')
+       }
+  // const handlesub = ()=>{
+  //     navigate7('/')
+  // }
   return (
-    <div>
     <MDBContainer fluid classname="body">
 
-      <MDBRow className='justify-content-center align-items-center m-5'>
-
-        <MDBCard>
-          <MDBCardBody className='px-4 ccc'>
-
-            <h3 className="fw-bold mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-
-            <MDBRow>
-
-              <MDBCol md='6'>
-                <MDBInput wrapperClass='mb-4' label='First Name' size='lg' id='form1' type='text'/>
-              </MDBCol>
-
-              <MDBCol md='6'>
-                <MDBInput wrapperClass='mb-4' label='Last Name' size='lg' id='form2' type='text'/>
-              </MDBCol>
-
-            </MDBRow>
-
-            <MDBRow>
-
-              <MDBCol md='6'>
-                <MDBInput wrapperClass='mb-4' label='Birthday' size='lg' id='form3' type='text'/>
-              </MDBCol>
-
-              <MDBCol md='6' className='mb-4'>
-                <h6 className="fw-bold">Gender: </h6>
-                <MDBRadio name='inlineRadio' id='inlineRadio1' value='option1' label='Female' inline />
-                <MDBRadio name='inlineRadio' id='inlineRadio2' value='option2' label='Male' inline />
-                <MDBRadio name='inlineRadio' id='inlineRadio3' value='option3' label='Other' inline />
-              </MDBCol>
-
-            </MDBRow>
-
-            <MDBRow>
-
-              <MDBCol md='6'>
-                <MDBInput wrapperClass='mb-4' label='Email' size='lg' id='form4' type='email'/>
-              </MDBCol>
-
-              <MDBCol md='6'>
-                <MDBInput wrapperClass='mb-4' label='Phone Number' size='lg' id='form5' type='rel'/>
-              </MDBCol>
-
-            </MDBRow>
-
-            {/* <MDBSelect
-              label='Choose option'
-              className='mb-4'
-              size='lg'
-              data={[
-                { text: 'Choose option', value: 1, disabled: true },
-                { text: 'Subject 1', value: 2 },
-                { text: 'Subject 2', value: 3 },
-                { text: 'Subject 3', value: 4 }
-              ]}
-              />*/}
-            <MDBBtn className='mb-4' size='lg' style={{backgroundColor: 'green' }}onClick={handlesub}>Submit</MDBBtn>
-
-          </MDBCardBody>
-        </MDBCard>
-
-      </MDBRow>
+<div className="Auth-form-container">
+    <form className="Auth-form" onSubmit={(e)=>handleSubmitChangeSignUp(e)}>
+      <div className="Auth-form-content">
+        <h3 className="Auth-form-title">Sign Up</h3>
+        <div className="text-center">
+          Already registered?
+          <span className="link-primary">
+           <Link to={'/signin'}>Sign In</Link> 
+          </span>
+        </div>
+        <div className="form-group mt-3">
+          <label>Full Name</label>
+          <input
+            type="text"
+            className="form-control mt-1"
+            placeholder="e.g Jane Doe"
+            onChange={(e)=> setdata({...data,name:e.target.value})}
+           
+          />
+        </div>
+        <div className="form-group mt-3">
+          <label>Email address</label>
+          <input
+            type="email"
+            className="form-control mt-1"
+            placeholder="Email Address"
+            onChange={(e)=> setdata({...data,email:e.target.value})}
+           
+          />
+        </div>
+        <div className="form-group mt-3">
+          <label>Password</label>
+          <input
+            type="password"
+            className="form-control mt-1"
+            placeholder="Password"
+            onChange={(e)=> setdata({...data,password:e.target.value})}
+           
+          />
+        </div>
+        <div className="d-grid gap-2 mt-3">
+        <div className="d-grid gap-2 mt-3">
+              <button type="submit" className="btn btn-primary" style={{backgroundColor:'green'}}>
+                Submit
+              </button>
+            </div>
+        </div>
+      
+      </div>
+    </form>
+    
+  </div>
+    
     </MDBContainer>
-    </div>
   );
 }
 
-export default Signup;
+export default Signup;

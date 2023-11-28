@@ -1,20 +1,51 @@
 import React from 'react';
 import {
-  MDBBtn,
   MDBContainer,
   MDBRow,
-  MDBCol,
-  MDBInput
+  MDBCol
 }
 from 'mdb-react-ui-kit';
 import '../Login/Loginpage.css'
-import { useNavigate } from 'react-router-dom';
+import {useEffect, useRef, useState}from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import { getUserData } from '../../service/UserApi';
 
 function Loginpage() {
-  const navigate6=useNavigate();
-  const handlesign = ()=>{
-      navigate6('/')
-  }
+  const [data,setdata]=useState([]);
+  useEffect(()=>
+  {
+    const fetchData =async()=>
+    {
+       await getUserData ()
+       .then((ress)=>setdata(ress.data))// inbuild data
+       .catch((e)=>console.error(e));
+    }
+    fetchData();
+  },[]);
+  const nameRef=useRef();
+const passwordRef=useRef();
+
+const navigate=useNavigate();
+
+
+const handleSubmitChangeSignIn=(event)=>{
+    event.preventDefault();
+    const name =nameRef.current.value;
+    const password =passwordRef.current.value;
+    const somedata=data.findIndex((props)=>props.email===name);
+    console.log(somedata)
+          if( somedata!==-1&& data[somedata].password===password) {
+              navigate('/');
+            
+          }
+          else if(somedata===-1)
+          {
+            alert("invalid password/emailid");
+            navigate('/login');
+          }
+           }
+      
+
   return (
     <MDBContainer className="my-5 gradient-form">
 
@@ -24,29 +55,61 @@ function Loginpage() {
           <div className="d-flex flex-column ms-5">
 
             <div className="text-center">
-              <img src="https://images.squarespace-cdn.com/content/v1/5908027c20099e374ad3d70e/1498497433363-9FIJ7FA1O2O1OMU760YE/symbol-of-caduceus.jpg"
+              <img src="https://img.freepik.com/free-vector/medical-equipments-pills-white-background_1308-43344.jpg?size=626&ext=jpg&ga=GA1.1.19472705.1700452875&semt=ais"
                 style={{width: '185px'}} alt="logo" />
               <h4 className="mt-1 mb-5 pb-1">Medflix: Your Pathway to Wellness and Care</h4>
             </div>
 
             <p>Please login to your account</p>
+            <div>
+            <div className="Auth-form-container">
+        <form className="Auth-form" onSubmit={handleSubmitChangeSignIn}>
+          <div className="Auth-form-content">
+            <h3 className="Auth-form-title">Sign In</h3>
+            <div className="text-center">
+              Not registered yet?
+              <span className="link-primary" > 
+                    <Link to={'/signup'}> Sign Up </Link> 
+              </span>
 
-
-            <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'/>
-            <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password'/>
-
-
-            <div className="text-center pt-1 mb-5 pb-1">
-              <MDBBtn className="mb-4 w-100 gradient-custom-2" onClick={handlesign}>Sign in</MDBBtn>
-              <a className="text-muted" href="#!">Forgot password?</a>
+            </div>
+            <div className="form-group mt-3">
+              <label>Email address</label>
+              <input
+                type="email"
+                className="form-control mt-1"
+                placeholder="Enter email"
+                ref={nameRef}
+              />
+            </div>
+            <div className="form-group mt-3">
+              <label>Password</label>
+              <input
+                type="password"
+                className="form-control mt-1"
+                placeholder="Enter password"
+                ref={passwordRef}
+              />
+            </div>
+            <div className="d-grid gap-2 mt-3">
+             
+              <button type="submit" className="btn btn-primary" style={{backgroundColor:'green'}}>
+                Submit
+              </button>
+              
+            </div>
+            <p className="text-center mt-2">
+             <Link to={'/forget'}> Forgot password?</Link>
+            </p>
+          </div>
+        </form>
+      </div>
             </div>
 
-            <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
-              <p className="mb-0">Don't have an account?</p>
-              <MDBBtn outline className='mx-2' color='success' onClick={handlesign}>
-                Create Account
-              </MDBBtn>
-            </div>
+
+            
+
+           
 
           </div>
 
@@ -81,4 +144,4 @@ The Medflix Team
   );
 }
 
-export default Loginpage;
+export default Loginpage;
